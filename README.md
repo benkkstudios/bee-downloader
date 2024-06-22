@@ -5,6 +5,15 @@ Mutiple download manager with workmanager
 Jetpack compose support
 
 
+## Installation
+
+add this to gradle
+implementation 'com.github.benkkstudios:bee-downloader:<latest relase>'
+
+
+## Add To Gradle
+
+
 ## Initialize downloader
 
 ```kotlin
