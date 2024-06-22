@@ -14,5 +14,6 @@ data class DownloadItem(
     var total: Long = 0,
     var downloaded: Long = 0,
     var lastModifiedAt: Long = 0,
+    var scanToGallery: Boolean = false,
     var status: String = DownloadStatus.QUEUED,
 ) : BeeModel

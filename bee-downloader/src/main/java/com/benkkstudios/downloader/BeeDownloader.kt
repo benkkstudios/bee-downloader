@@ -24,8 +24,8 @@ object BeeDownloader {
         this.config = downloadConfig
     }
 
-    fun enqueue(url: String, directory: String, filename: String, thumbnail: String? = null) = runCatching {
-        database.insert(createDownloadItem(url, directory, filename, thumbnail), ExistMode.NOTHING)
+    fun enqueue(url: String, directory: String, filename: String, thumbnail: String? = null, scanToGallery: Boolean = false) = runCatching {
+        database.insert(createDownloadItem(url, directory, filename, thumbnail, scanToGallery), ExistMode.NOTHING)
     }.onFailure {
         it.printStackTrace()
     }
@@ -58,12 +58,19 @@ object BeeDownloader {
         workManager.cancelAllWork()
     }
 
-    private fun createDownloadItem(url: String, directory: String, filename: String, thumbnail: String? = null) = DownloadItem(
+    private fun createDownloadItem(
+        url: String,
+        directory: String,
+        filename: String,
+        thumbnail: String? = null,
+        scanToGallery: Boolean
+    ) = DownloadItem(
         id = getUniqueId(url = url, directory = directory, filename = filename),
         thumbnail = thumbnail,
         directory = directory,
         filename = filename,
         url = url,
-        lastModifiedAt = System.currentTimeMillis()
+        scanToGallery = scanToGallery,
+        lastModifiedAt = System.currentTimeMillis(),
     )
 }

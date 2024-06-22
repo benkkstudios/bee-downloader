@@ -53,22 +53,24 @@ class MainActivity : ComponentActivity() {
 fun downloadAllImages(context: Context) {
     BeeDownloader.clear()
     BeeDownloader.enqueue(
-        url = "https://getsamplefiles.com/download/zip/sample-1.zip",
+        url = "https://i.pinimg.com/564x/38/c8/6e/38c86eb987d1ab5cbb969507eb4c6589.jpg",
         directory = context.cacheDir.absolutePath,
-        filename = "example1.zip",
-        thumbnail = "https://i.pinimg.com/736x/7d/85/71/7d8571547023deaed18291bf6362a2e7.jpg"
+        filename = "example1.jpg",
+        thumbnail = "https://i.pinimg.com/564x/38/c8/6e/38c86eb987d1ab5cbb969507eb4c6589.jpg",
+        scanToGallery = true
     )
     BeeDownloader.enqueue(
-        url = "https://getsamplefiles.com/download/zip/sample-1.zip",
+        url = "https://i.pinimg.com/564x/04/9a/5f/049a5fdd0ebb5c7f225b3202a1724dce.jpg",
         directory = context.cacheDir.absolutePath,
-        filename = "example2.zip",
-        thumbnail = "https://i.pinimg.com/736x/7d/85/71/7d8571547023deaed18291bf6362a2e7.jpg"
+        filename = "example2.jpg",
+        thumbnail = "https://i.pinimg.com/564x/04/9a/5f/049a5fdd0ebb5c7f225b3202a1724dce.jpg"
     )
     BeeDownloader.enqueue(
-        url = "https://getsamplefiles.com/download/zip/sample-1.zip",
+        url = "https://i.pinimg.com/564x/62/a9/d8/62a9d85482f143f922f01725a348d4e4.jpg",
         directory = context.cacheDir.absolutePath,
-        filename = "example3.zip",
-        thumbnail = "https://i.pinimg.com/736x/7d/85/71/7d8571547023deaed18291bf6362a2e7.jpg"
+        filename = "example3.jpg",
+        thumbnail = "https://i.pinimg.com/564x/62/a9/d8/62a9d85482f143f922f01725a348d4e4.jpg",
+        scanToGallery = true
     )
     BeeDownloader.start(context)
 }

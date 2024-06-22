@@ -1,6 +1,7 @@
 package com.benkkstudios.downloader.internal
 
 import android.content.Context
+import android.media.MediaScannerConnection
 import androidx.lifecycle.Observer
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
@@ -21,9 +22,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
 internal class DownloadWorker(
-    context: Context, workerParams: WorkerParameters
+    private val context: Context, workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams), DownloadTask.Listener {
     private val database = DownloadDatabase.getInstance(context)
     private val scope: CoroutineScope = CoroutineScope(Dispatchers.Main)
@@ -97,6 +99,7 @@ internal class DownloadWorker(
     override fun onComplete() {
         notificationManager.onComplete(item)
         updateProgress(DownloadStatus.COMPLETED, 100)
+        if (item.scanToGallery) scanFile(item)
     }
 
     override fun onError(error: String) {
@@ -132,5 +135,12 @@ internal class DownloadWorker(
         val saveItem = item.copy(status = downloadStatus, progress = progress)
         database.update(saveItem)
         scope.launch { setProgress(data.build()) }
+    }
+
+    private fun scanFile(item: DownloadItem) {
+        MediaScannerConnection.scanFile(
+            context, arrayOf(File(item.directory, item.filename).absolutePath),
+            null
+        ) { _, _ -> }
     }
 }
