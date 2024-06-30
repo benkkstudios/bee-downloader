@@ -31,6 +31,7 @@ object BeeDownloader {
     }
 
     fun state() = downloadObserver.downloadState
+    fun resetState() = downloadObserver.reset()
 
     fun getAllDownload() = flow { emit(database.get()) }
 

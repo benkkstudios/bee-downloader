@@ -20,5 +20,6 @@ sealed class DownloadState(
     data object Canceled : DownloadState(status = DownloadStatus.CANCELLED, progress = 0)
     data object Removed : DownloadState()
     data object Queued : DownloadState()
+    data object Unknown : DownloadState()
 }
 

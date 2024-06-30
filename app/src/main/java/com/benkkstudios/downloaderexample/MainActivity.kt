@@ -35,6 +35,9 @@ import androidx.compose.ui.unit.sp
 import com.benkkstudios.downloader.BeeDownloader
 import com.benkkstudios.downloader.internal.DownloadState
 import com.benkkstudios.downloaderexample.ui.theme.BeeDownloaderExampleTheme
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -216,7 +219,9 @@ fun Greeting() {
 //            }
 //        }
     }
+
 }
+
 
 @Preview(showBackground = true)
 @Composable

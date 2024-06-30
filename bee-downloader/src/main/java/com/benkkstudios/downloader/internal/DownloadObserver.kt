@@ -21,6 +21,10 @@ internal class DownloadObserver {
         }
     }
 
+    fun reset() {
+        _downloadState.tryEmit(DownloadState.Unknown)
+    }
+
     fun get() = _observer
 
     suspend fun observe(context: Context, callback: (DownloadState) -> Unit) {
